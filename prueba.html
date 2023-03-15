@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+        }
+
+        form {
+            background-color: #f2f2f2;
+            border: 1px solid #dddddd;
+            padding: 200px;
+            max-width: 800px;
+            margin: 10px auto;
+        }
+
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type=submit] {
+            background-color: #4CAF50;
+            color: #ffffff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+        }
+
+        button[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        .container {
+            padding: 16px;
+        }
+
+        span.psw {
+            float: right;
+            padding-top: 16px;
+        }
+        span.psw2 {
+            float: left;
+            padding-top: 16px;
+        }
+
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+</head>
+<body>
+    <form action="/login" method="post">
+        <div>
+            <img src="https://plataformacii.ingenieria.usac.edu.gt/images/logo_fi.png" width="100%"> 
+        </div>
+        <div class="container">
+            <label for="username"><b>Usuario</b></label>
+            <input type="text" placeholder="Ingrese Nombre" name="username" required>
+
+            <label for="password"><b>Contraseña</b></label>
+            <input type="password" placeholder="Ingrese Contraseña" name="password" required>
+
+            <button type="submit">Ingresar</button>
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Recordar Contraseña
+            </label>
+        </div>
+
+        <div class="container clearfix">
+            <span class="psw2"><a href="#">Crear Usuario</a></span>
+            <span class="psw"><a href="#">Olvide mi contraseña</a></span>
+        </div>
+    </form>
+</body>
+</html>
