@@ -36,27 +36,26 @@ connection.connect((error)=>{
 });
 
 
-//VERIFICACION
 const sql_selection = `SELECT * FROM estudiantes_bd.usuarios3;`;
+
+
+//INICIAR SESION 
 connection.query(sql_selection, (err, result, fields)=>{
     if(err){
         console.log(`Hubo un error ${err}`);
         return;
     }
-    console.log(result)
 
-
-    //VERIFICACION
     app.post('/retornoUsuario',(req,res)=>{
         let usuarios= result;
         let existe = false
     
         for (let i = 0; i < usuarios.length; i++) {
 
-            if (usuarios[i].Registro_A == req.body.Registro){
+            if (usuarios[i].Registro_A == req.body.Registro && usuarios[i].Pass == req.body.Pass ){
                 existe= true 
                 
-                res.send({Mensaje:"Bienvenido"});
+                res.send({Mensaje:"Bienvenido " + usuarios[i].Nombre });
             }        
         }
         
@@ -69,7 +68,6 @@ connection.query(sql_selection, (err, result, fields)=>{
 
     
 });
-
 
 
 //CREACION DE USUARIOS 
@@ -105,40 +103,77 @@ app.post('/creacion',(req,res)=>{
 })
 
 
-
-// server
-var data = [
-    {
-        Titulo: 'Saludo',
-        Mensaje:'Bienvenidos a la pagina principal',
-        Tipo:'string' 
-    },
-    {
-        Titulo: 'Saludo2',
-        Mensaje:'Bienvenida2',
-        Tipo:'string'
+//MODIFICAR PASSWORD
+connection.query(sql_selection, (err, result, fields)=>{
+    if(err){
+        console.log(`Hubo un error ${err}`);
+        return;
     }
-];
+
+    //VERIFICACION
+    app.post('/modificar',(req,res)=>{
+        let usuarios= result;
+        let existe = false
+        let user 
+    
+        for (let i = 0; i < usuarios.length; i++) {
+
+            if (usuarios[i].Registro_A == req.body.Registro && usuarios[i].Correo == req.body.Correo ){
+                existe= true
+                
+                user=usuarios[i]
+
+                connection.query('UPDATE estudiantes_bd.usuarios3 SET Pass = ? WHERE Registro_A = ?',[req.body.NuevaPass, user.Registro_A],(err, result, fields) => {
+                    if (err) {
+                        console.log(`Hubo un error: ${err}`);
+                        return;
+                    }
+                    res.send({Mensaje:"Se modifico correctamente" });
+                });
+                
+            }        
+        }
+
+        if (existe == false){
+            res.send({Mensaje:"Error al insertar datos en la base de datos" });
+        }
+
+    });
+
+});
 
 
-//routes
+//MOSTRAR USUARIOS
+const sql_selection2 = `SELECT * FROM estudiantes_bd.usuarios3;`;
+connection.query(sql_selection2, (err, result, fields)=>{
+    if(err){
+        console.log(`Hubo un error ${err}`);
+        return;
+    }
+
+    //VERIFICACION
+    app.get('/usuarios', (req, res) => {
+        const sql_selection2 = `SELECT * FROM estudiantes_bd.usuarios3;`;
+        connection.query(sql_selection2, (err, result, fields) => {
+          if (err) {
+            console.log(`Hubo un error ${err}`);
+            return;
+          }
+          res.send(result);
+        });
+      });
+
+});
+
+
+//BASE
 app.get('/',(req,res)=>{
     res.send('Hola mundo desde mi primer Backend con NodeJS');
 })
 
-
-app.get('/ejemplo',(req,res)=>{
-    var ejemplo = {
-        "Usuario":"Hector",
-        "Curso":"IPC1B",
-        "Horaio":"jueves"
-    }
-    res.send(ejemplo);
-})
-
-
+//HOME
 app.get('/home',(req,res)=>{
-    res.send(data);
+    res.send({Mensaje:"Bienvenido a la pagina principal"}  );
 })
 
 
