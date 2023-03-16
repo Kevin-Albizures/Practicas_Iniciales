@@ -50,6 +50,10 @@ connection.query(sql_selection, (err, result, fields)=>{
     }
 
     app.post('/retornoUsuario',(req,res)=>{
+        const sql_selection2 = `SELECT * FROM estudiantes_bd.usuarios3;`;
+        connection.query(sql_selection2, (err, result, fields)=>{
+        
+
         let usuarios= result;
         let existe = false
     
@@ -66,7 +70,7 @@ connection.query(sql_selection, (err, result, fields)=>{
             res.send({Mensaje:"No se encuentra usuario con esos datos"});
         }
         
-       
+        });
     });
 
     
@@ -115,11 +119,15 @@ connection.query(sql_selection, (err, result, fields)=>{
 
     //VERIFICACION
     app.post('/modificar',(req,res)=>{
+        const sql_selection2 = `SELECT * FROM estudiantes_bd.usuarios3;`;
+        connection.query(sql_selection2, (err, result, fields)=>{
+
         let usuarios= result;
         let existe = false
         let user 
     
         for (let i = 0; i < usuarios.length; i++) {
+            
 
             if (usuarios[i].Registro_A == req.body.Registro && usuarios[i].Correo == req.body.Correo ){
                 existe= true
@@ -140,6 +148,7 @@ connection.query(sql_selection, (err, result, fields)=>{
         if (existe == false){
             res.send({Mensaje:"Error al insertar datos en la base de datos" });
         }
+        });
 
     });
 
