@@ -24,6 +24,8 @@ const connection = mysql.createConnection({
     user: 'root',
     password:'hernandez15'
 });
+
+
 connection.connect((error)=>{
     if(error){
         console.log('Hubo un error');
@@ -34,9 +36,8 @@ connection.connect((error)=>{
 });
 
 
-
-const sql_selection = `SELECT * FROM estudiantes_bd.usuarios;`;
-
+//VERIFICACION
+const sql_selection = `SELECT * FROM estudiantes_bd.usuarios3;`;
 connection.query(sql_selection, (err, result, fields)=>{
     if(err){
         console.log(`Hubo un error ${err}`);
@@ -44,6 +45,8 @@ connection.query(sql_selection, (err, result, fields)=>{
     }
     console.log(result)
 
+
+    //VERIFICACION
     app.post('/retornoUsuario',(req,res)=>{
         let usuarios= result;
         let existe = false
@@ -64,22 +67,42 @@ connection.query(sql_selection, (err, result, fields)=>{
        
     });
 
-
-
-
-
-
     
-    
-  
 });
 
 
 
+//CREACION DE USUARIOS 
+app.post('/creacion',(req,res)=>{
+    console.log(req.body);
 
+    var dato1 = req.body.Registro_A;
+    var dato2 = req.body.Nombre;
+    var dato3 = req.body.Apellidos;
+    var dato4 = req.body.Pass;
+    var dato5 = req.body.Correo;
 
-connection.end();
+    let sql_insert = `INSERT INTO usuarios3(Registro_A, Nombre, Apellidos, Pass, Correo) VALUES(${dato1}, '${dato2}', '${dato3}', '${dato4}', '${dato5}');`;
 
+    connection.query(sql_insert, (error, results, fields) => {
+        if (error) {
+            res.send({Mensaje:"Error al insertar datos en la base de datos", Error: error.stack });
+            return;
+        }
+        var respuesta = {  
+            Mensaje:"Los datos se han insertado correctamente en la base de datos", 
+            Registro_A: dato1,  
+            Nombre: dato2,
+            Apellidos: dato3,
+            Pass: dato4,    
+            Correo: dato5
+        }
+        
+        res.send(respuesta);
+    });
+
+    
+})
 
 
 
