@@ -36,6 +36,8 @@ connection.connect((error)=>{
 });
 
 
+
+
 //VERIFICACION
 const sql_selection = `SELECT * FROM estudiantes_bd.usuarios3;`;
 connection.query(sql_selection, (err, result, fields)=>{
@@ -146,3 +148,5 @@ app.get('/home',(req,res)=>{
 app.listen(app.get('port'),()=>{
     console.log('Servidor iniciado en el puerto: '+app.get('port'));
 })
+
+//ng serve -o
