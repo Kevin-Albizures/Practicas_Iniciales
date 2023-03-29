@@ -12,7 +12,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 //configuraciones
-app.set('port',4233);
+app.set('port',4241);
 
 
 // usando morgan para middlewares
@@ -116,7 +116,7 @@ app.post('/crearClientes',bodyParser.json(),(req,res)=>{
 
 
 //MODIFICAR PASSWORD
-app.post('/modificar',(req,res)=>{
+app.post('/modificarPass',(req,res)=>{
     const sql_selection2 = `SELECT * FROM estudiantes_bd.usuarios3;`;
     connection.query(sql_selection2, (err, result, fields)=>{
 
@@ -134,17 +134,17 @@ app.post('/modificar',(req,res)=>{
 
             connection.query('UPDATE estudiantes_bd.usuarios3 SET Pass = ? WHERE Registro_A = ?',[req.body.NuevaPass, user.Registro_A],(err, result, fields) => {
                 if (err) {
-                    console.log(`Hubo un error: ${err}`);
+                    console.log({Mensaje:`Hubo un error: ${err}`, Estado:false});
                     return;
                 }
-                res.send({Mensaje:"Se modifico correctamente" });
+                res.send({Mensaje:"Se modifico correctamente la cotraseña", Estado:true});
             });
             
         }        
     }
 
     if (existe == false){
-        res.send({Mensaje:"Error al insertar datos en la base de datos" });
+        res.send({Mensaje:"No se encuentra usuario con esos datos", Estado:false});
     }
     });
 
@@ -260,7 +260,7 @@ app.post('/modificarUsuario',(req,res)=>{
     for (let i = 0; i < usuarios.length; i++) {
         
 
-        if (usuarios[i].Registro_A == req.body.Registro_academico){
+        if (usuarios[i].Registro_A == req.body.Registro_A){
             existe= true
             
             user=usuarios[i]
@@ -270,15 +270,30 @@ app.post('/modificarUsuario',(req,res)=>{
                     console.log(`Hubo un error: ${err}`);
                     return;
                 }
-                res.send({Mensaje:"Se modifico correctamente" });
+                res.send({Mensaje:"Se modifico correctamente", Estado: true});
             });
             
         }        
     }
 
     if (existe == false){
-        res.send({Mensaje:"Error al insertar datos en la base de datos" });
+        res.send({Mensaje:"Error al insertar datos en la base de datos" , Estado: false });
     }
+    });
+
+});
+
+
+//BUSCAR USUARIO
+app.post('/buscarUsuario',(req,res)=>{
+    connection.query(`SELECT * FROM estudiantes_bd.usuarios3 WHERE Registro_A = ?`,[req.Registro_A], (err, result, fields)=>{
+        if (err) {
+            console.log(`Hubo un error: ${err}`);
+            return;
+        }
+
+        res.send({Mensaje:"Se encontro", Usuario: result});
+
     });
 
 });
