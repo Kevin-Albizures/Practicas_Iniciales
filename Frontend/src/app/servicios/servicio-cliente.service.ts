@@ -15,10 +15,10 @@ const httpOptions ={
 export class ServicioClienteService {
   private ingresar:boolean = false;
   private usuario:any = {};
-  private usuarioSec:any = {};
+  private usuario2:any = {};
 
 
-  servidor="http://localhost:4241"
+  servidor="http://localhost:4245"
 
 
   constructor(private servicio:HttpClient) { }
@@ -70,6 +70,11 @@ export class ServicioClienteService {
 
   }
 
+  BuscarUsuario(datos:any): Observable <any>{
+    return this.servicio.post(`${this.servidor}/buscarUsuario`, JSON.stringify(datos) , httpOptions);
+
+  }
+
 
 
 
@@ -91,12 +96,12 @@ export class ServicioClienteService {
   }
 
 
-  encapsularSec(usuario:any){
-    return this.usuarioSec = usuario;
+  encapsular2(usuario2:any){
+    return this.usuario2 = usuario2;
   }
 
-  devolverSec(){
-    return this.usuarioSec;
+  devolver2(){
+    return this.usuario2;
   }
 
 }

@@ -12,7 +12,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 //configuraciones
-app.set('port',4241);
+app.set('port',4245);
 
 
 // usando morgan para middlewares
@@ -151,12 +151,6 @@ app.post('/modificarPass',(req,res)=>{
 });
 
 
-
-
-
-
-
-
 //MOSTRAR USUARIOS
 app.get('/usuarios', (req, res) => {
     const sql_selection2 = `SELECT * FROM estudiantes_bd.usuarios3;`;
@@ -285,17 +279,37 @@ app.post('/modificarUsuario',(req,res)=>{
 
 
 //BUSCAR USUARIO
-app.post('/buscarUsuario',(req,res)=>{
-    connection.query(`SELECT * FROM estudiantes_bd.usuarios3 WHERE Registro_A = ?`,[req.Registro_A], (err, result, fields)=>{
-        if (err) {
-            console.log(`Hubo un error: ${err}`);
-            return;
+connection.query(sql_selection, (err, result, fields)=>{
+    if(err){
+        console.log(`Hubo un error ${err}`);
+        return;
+    }
+
+    app.post('/buscarUsuario',(req,res)=>{
+        const sql_selection2 = `SELECT * FROM estudiantes_bd.usuarios3;`;
+        connection.query(sql_selection2, (err, result, fields)=>{
+        
+
+        let usuarios= result;
+        let existe = false
+    
+        for (let i = 0; i < usuarios.length; i++) {
+
+            if (usuarios[i].Registro_A == req.body.Registro){
+                existe= true 
+                
+                res.send({Mensaje:"Bienvenido", Usuario: usuarios[i], Estado: true});
+            }        
         }
-
-        res.send({Mensaje:"Se encontro", Usuario: result});
-
+        
+        if(existe==false){
+            res.send({Mensaje:"No se encuentra usuario con esos datos", Estado: false});
+        }
+        
+        }); 
     });
 
+    
 });
 
 

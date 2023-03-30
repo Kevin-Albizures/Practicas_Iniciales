@@ -23,10 +23,39 @@
 	</div>
 
     <main>
+		<br><br><br>
+		<div>
+			<h2 class="titulo2">Informacion de Usuario </h2>
+		</div>
 
-			<h2 class="titulo2">Cursos Aprobados </h2>
-      <h4 class="creditos">Total de Creditos: {{idUsuarioS}} </h4>
-			<br>
+		<br>
+		<div class="info"> 
+			<label for="staticEmail" class="textos" style="max-width: 10rem;">Id Usuario:  </label>
+			<input type="text"  id="staticEmail" value="{{idUsuarioSecundario}}" style="max-width: 40rem;" disabled>
+		</div>
+
+		<div class="info"> 
+			<label for="staticEmail" class="textos" style="max-width: 10rem;">Nombres:  </label>
+			<input type="text"  id="staticEmail" value="{{nombreUsuarioSecundario}}" style="max-width: 40rem;" disabled>
+		</div>
+
+		<div class="info"> 
+			<label for="staticEmail" class="textos" style="max-width: 10rem;">Apellidos:  </label>
+			<input type="text"  id="staticEmail" value="{{apellidosUsuarioSecundario }}" style="max-width: 40rem;" disabled>
+		</div>
+		
+		<div class="info"> 
+			<label for="staticEmail" class="textos2" style="max-width: 10rem;">Correo :  </label>
+			<input type="text"  id="staticEmail" value="{{coreoUsuarioSecundario}}" style="max-width: 40rem;" disabled>
+		</div>
+
+
+
+
+		<br><br><br>
+		<h2 class="titulo2">Cursos Aprobados </h2>
+		<h4 class="creditos">Total de Creditos: {{creditos}}</h4>
+		<br>
 
       <div class="row row-cols-1 row-cols-md-4 g-4">
           <div *ngFor ="let item of datosCurso" class="col">
@@ -39,9 +68,9 @@
                 </div>
           </div>
       </div>
-
+	  
     </main>   
-
+    <br><br>
     <footer>
 		<p>© 2023 - Nombre de usuario</p>
 	</footer>
