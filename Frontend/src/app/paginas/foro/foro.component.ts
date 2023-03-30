@@ -56,7 +56,11 @@ export class ForoComponent implements OnInit {
       console.log(respuesta);
 
       if(respuesta.Estado == true){
-        alert("Comentario creado correctamente");
+        alert("Sub-Comentario creado correctamente");
+        this.formulario.get("comentarioSegundario")?.setValue("");
+
+      }else {
+        alert("Datos inválidos para la creación");
       }
     });
   }  

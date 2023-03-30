@@ -39,6 +39,20 @@ export class RegistroComponent  implements OnInit {
 
     }).subscribe(respuesta => {
       console.log(respuesta);
+
+      if(respuesta.Estado == true){
+        alert("Usuario creado correctamente");
+        this.formulario.get("registro_academico")?.setValue("");
+        this.formulario.get("nombre")?.setValue("");
+        this.formulario.get("apellidos")?.setValue("");
+        this.formulario.get("pass")?.setValue("");
+        this.formulario.get("correo")?.setValue("");
+
+
+      }else {
+        alert("Datos inválidos para la creación");
+      }
+      
     });
   }  
 

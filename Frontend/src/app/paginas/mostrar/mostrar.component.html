@@ -22,6 +22,7 @@
 		</div>
 	</div>
 
+    <br>
     <main>
         <div class="row row-cols-1 row-cols-md-4 g-4">
             <div *ngFor ="let item of datosComentario" class="col">
@@ -38,8 +39,12 @@
                     <li class="list-group-item">Fecha: {{item.Fecha}}</li>
                     </ul>
                     <div class="card-body">
-                    <a (click)="buscar(item.Id_creador)"   class="card-link">Perfil del Creador</a>
-                    <a (click)="buscar2(item.Id)"   class="card-link">Comentarios</a>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                            <button (click)="buscar(item.Id_creador)" type=submit   class="btn btn-success btn-sm">Perfil del Creador<del></del></button>
+                            <button (click)="buscar2(item.Id)" type=submit  class="btn btn-success btn-sm">Foro</button>
+                        </div>    
+
                     </div>
                 </div>
             </div>

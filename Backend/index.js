@@ -12,7 +12,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 //configuraciones
-app.set('port',4257);
+app.set('port',4263);
 
 
 // usando morgan para middlewares
@@ -92,11 +92,18 @@ app.post('/crearClientes',bodyParser.json(),(req,res)=>{
     var dato4 = req.body.Pass;
     var dato5 = req.body.Correo;
 
+    if(( dato1 =="" || dato1 ==" ") || ( dato2 =="" || dato2 ==" ") || ( dato3 =="" || dato3 ==" ") || ( dato4 =="" || dato4 ==" ") || ( dato5 =="" || dato5 ==" ")){
+
+        res.send(JSON.stringify({Mensaje:"Datos inválidos para la creación", Estado: false }));
+        return;
+
+    }
+
     let sql_insert = `INSERT INTO usuarios3(Registro_A, Nombre, Apellidos, Pass, Correo) VALUES(${dato1}, '${dato2}', '${dato3}', '${dato4}', '${dato5}');`;
 
     connection.query(sql_insert, (error, results, fields) => {
         if (error) {
-            res.send(JSON.stringify({Mensaje:"Error al insertar datos en la base de datos", Error: error.stack }));
+            res.send(JSON.stringify({Mensaje:"Error al insertar datos en la base de datos", Error: error.stack , Estado: false}));
             return;
         }
         var respuesta = {  
@@ -108,7 +115,7 @@ app.post('/crearClientes',bodyParser.json(),(req,res)=>{
             Correo: dato5
         }
         
-        res.send(JSON.stringify(`Cliente creado con id: ${dato1}`));
+        res.send(JSON.stringify({Mensaje:"Usuario creado correctamente", Estado: true }));
     });
 
     
@@ -124,6 +131,12 @@ app.post('/modificarPass',(req,res)=>{
     let existe = false
     let user 
 
+    if( req.body.NuevaPass =="" || req.body.NuevaPass ==" "){
+        res.send(JSON.stringify({Mensaje:"Contraseña no puede ser un parámetro vacío", Estado: false }));
+        return;
+    }
+
+    
     for (let i = 0; i < usuarios.length; i++) {
         
 
@@ -169,7 +182,7 @@ app.get('/home',(req,res)=>{
 })
 
 
-//crearComentarios
+//CREAR COMENTARIOS
 app.post('/crearComentarios',bodyParser.json(),(req,res)=>{
     console.log(req.body);
 
@@ -181,15 +194,22 @@ app.post('/crearComentarios',bodyParser.json(),(req,res)=>{
     var dato6 = req.body.Subcomentarios;
     console.log(dato1);
 
+    if(( dato1 =="" || dato1 ==" ") || ( dato2 =="" || dato2 ==" ") || ( dato3 =="" || dato3 ==" ") || ( dato4 =="" || dato4 ==" ") || ( dato5 =="" || dato5 ==" ")){
+
+        res.send(JSON.stringify({Mensaje:"Datos inválidos para la creación", Estado: false }));
+        return;
+
+    }
+
     let sql_insert = `INSERT INTO comentarios(Creador, Id_creador, Curso, Catedratico, Comentario, Fecha, Subcomentarios) VALUES('${dato1}', ${dato2}, '${dato3}', '${dato4}', '${dato5}', CURRENT_TIMESTAMP(), ${dato6} );`;
 
     connection.query(sql_insert, (error, results, fields) => {
         if (error) {
-            res.send(JSON.stringify({Mensaje:"Error al insertar datos en la base de datos", Error: error.stack }));
+            res.send(JSON.stringify({Mensaje:"Error al insertar datos en la base de datos", Error: error.stack, Estado: false}));
             return;
         }
         
-        res.send(JSON.stringify({Mensaje:"Comentario creado con exito", Creador: dato1}));
+        res.send(JSON.stringify({Mensaje:"Comentario creado con exito", Estado: true}));
         console.log(results);
     });
 
@@ -216,16 +236,23 @@ app.post('/crearCursos', bodyParser.json(), (req,res)=>{
     var dato3 = req.body.Creditos;
     var dato4 = req.body.Id_Creador;
 
+    if(( dato1 =="" || dato1 ==" ") || ( dato2 =="" || dato2 ==" ") || ( dato3 =="" || dato3 ==" ") || ( dato4 =="" || dato4 ==" ") ){
+
+        res.send(JSON.stringify({Mensaje:"Datos inválidos para la creación", Estado: false }));
+        return;
+
+    }
+
 
     let sql_insert = `INSERT INTO cursos(Id_Curso, Curso, Creditos, Id_Creador) VALUES(${dato1}, '${dato2}', ${dato3} ,${dato4});`;
 
     connection.query(sql_insert, (error, results, fields) => {
         if (error) {
-            res.send(JSON.stringify({Mensaje:"Error al insertar datos en la base de datos", Error: error.stack }));
+            res.send(JSON.stringify({Mensaje:"Error al insertar datos en la base de datos", Error: error.stack, Estado: false  }));
             return;
         }
         
-        res.send(JSON.stringify({Mensaje:"Curso creado con exito", Creador: dato1}));
+        res.send(JSON.stringify({Mensaje:"Curso creado con exito", Estado: true}));
         console.log(results);
     });
 
@@ -250,6 +277,14 @@ app.post('/modificarUsuario',(req,res)=>{
     let usuarios= result;
     let existe = false
     let user 
+
+    if(( req.body.Nombre =="" || req.body.Nombre ==" ") || ( req.body.Apellidos =="" || req.body.Apellidos ==" ") || ( req.body.Pass =="" || req.body.Pass ==" ") || ( req.body.Correo =="" || req.body.Correo ==" ")){
+
+        res.send(JSON.stringify({Mensaje:"Datos inválidos para la creación", Estado: false }));
+        return;
+
+    }
+
 
     for (let i = 0; i < usuarios.length; i++) {
         
@@ -392,13 +427,20 @@ app.post('/crearSubcomentarios',bodyParser.json(),(req,res)=>{
     var dato1 = req.body.Comentario;
     var dato2 = req.body.Id_ComentarioPri;
     var dato3 = req.body.Nombre_Usuario;
+
+    if(( dato1 =="" || dato1 ==" ") || ( dato2 =="" || dato2 ==" ") || ( dato3 =="" || dato3 ==" ")){
+
+        res.send(JSON.stringify({Mensaje:"Comentario no puede ser un parámetro vacío", Estado: false }));
+        return;
+
+    }
     console.log(dato1);
 
     let sql_insert = `INSERT INTO sub_comentarios(Comentario, Id_ComentarioPri, Nombre_Usuario) VALUES('${dato1}', ${dato2}, '${dato3}');`;
 
     connection.query(sql_insert, (error, results, fields) => {
         if (error) {
-            res.send(JSON.stringify({Mensaje:"Error al insertar datos en la base de datos", Error: error.stack }));
+            res.send(JSON.stringify({Mensaje:"Error al insertar datos en la base de datos", Error: error.stack, Estado: false}));
             return;
         }
         

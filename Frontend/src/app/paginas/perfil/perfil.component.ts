@@ -66,6 +66,7 @@ export class PerfilComponent implements OnInit {
     }).subscribe(respuesta => {
       console.log(respuesta);
       if(respuesta.Estado==true) {
+        alert("Cambios realizados con éxito");
         this.router.navigate(['/home']);
       }
     });

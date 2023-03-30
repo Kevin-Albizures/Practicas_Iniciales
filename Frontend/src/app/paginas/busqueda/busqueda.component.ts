@@ -116,4 +116,24 @@ export class BusquedaComponent implements OnInit {
     }
   }  
 
+  buscar2(dato : number){
+    this.servicios.BuscarComentarioUnico ({
+      Id_CometarioUnico: dato
+  
+    }).subscribe(respuesta => {
+      console.log(respuesta);
+  
+  
+      if(respuesta.Estado == false){
+        alert("No se encuentra usuario con esos datos");
+        console.log(this.servicios.ingresarAplicativo(respuesta))
+      } else{
+        this.router.navigate(['/foro']);
+        this.servicios.encapsular3(respuesta.ComentarioP);
+      }
+      
+  
+    });
+    }
+
 }

@@ -33,10 +33,10 @@ export class CambioPassComponent implements OnInit {
     }).subscribe(respuesta => {
 
       if(respuesta.Estado == true){
-        alert("Se modifico correctamente la cotraseña");
+        alert("Se modifico correctamente la contraseña");
         this.router.navigate(['/home']);
       }else{
-        alert("No se encuentra usuario con esos datos");
+        alert("Error al modificar la contraseña");
       }
 
 

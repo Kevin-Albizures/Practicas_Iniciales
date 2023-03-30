@@ -39,7 +39,7 @@
 
 		</form>
 
-		<div class="row row-cols-1 row-cols-md-4 g-4">
+		<div class="row row-cols-1 row-cols-md-3 g-4">
 			<div *ngFor ="let item of comentariosFinales" class="col">
 				<div class="card h-100" style="width: 21rem;" >
 		
@@ -53,11 +53,14 @@
 					<li class="list-group-item">Id de creador: {{item.Id_creador}}</li>
 					<li class="list-group-item">Fecha: {{item.Fecha}}</li>
 					</ul>
-
 					<div class="card-body">
-						<a (click)="buscar(item.Id_creador)"   class="card-link">Perfil del Creador</a>
-						<a href="#" class="card-link">Comentarios</a>
-					</div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                            <button (click)="buscar(item.Id_creador)" type=submit   class="btn btn-success btn-sm">Perfil del Creador<del></del></button>
+                            <button (click)="buscar2(item.Id)" type=submit  class="btn btn-success btn-sm">Foro</button>
+                        </div>    
+
+                    </div>
 
 				</div>
 			</div>

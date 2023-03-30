@@ -50,6 +50,17 @@ export class PrincipalComponent implements OnInit {
 
     }).subscribe(respuesta => {
       console.log(respuesta);
+      if(respuesta.Estado == true){
+        alert("Comentario creado correctamente");
+
+        this.formulario.get("curso")?.setValue("");
+        this.formulario.get("catedratico")?.setValue("");
+        this.formulario.get("comentario")?.setValue("");
+
+      }else {
+        alert("Datos inválidos para la creación");
+      }
+      
     });
   }  
 
@@ -65,6 +76,17 @@ export class PrincipalComponent implements OnInit {
 
     }).subscribe(respuesta => {
       console.log(respuesta);
+
+      if(respuesta.Estado == true){
+        alert("Curso creado correctamente");
+        
+        this.formularioC.get("cursoA")?.setValue("");
+        this.formularioC.get("id_cursoA")?.setValue("");
+        this.formularioC.get("creditos")?.setValue("");
+      }else {
+        alert("Datos inválidos para la creación");
+      }
+
     });
   }  
 
