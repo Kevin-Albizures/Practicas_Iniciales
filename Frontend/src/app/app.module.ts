@@ -14,6 +14,7 @@ import { PerfilComponent } from './paginas/perfil/perfil.component';
 import { CambioPassComponent } from './paginas/cambio-pass/cambio-pass.component';
 import { PerfilSecComponent } from './paginas/perfil-sec/perfil-sec.component';
 import { BusquedaComponent } from './paginas/busqueda/busqueda.component';
+import { ForoComponent } from './paginas/foro/foro.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { BusquedaComponent } from './paginas/busqueda/busqueda.component';
     PerfilComponent,
     CambioPassComponent,
     PerfilSecComponent,
-    BusquedaComponent
+    BusquedaComponent,
+    ForoComponent
   ],
   imports: [
     BrowserModule,

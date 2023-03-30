@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Página de mostrar</title>
+</head>
+
+<body>
+    <header>
+		<div class="container2">
+			<img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Usac_logo.png" width="20%" > 
+		</div>	
+	</header>
+
+	<div class="container3">
+		<div class="btn-group" role="group" aria-label="Toolbar with button groups">
+			<button (click)="navegarPrincipal()" type="button" class="btn btn-primary">Principal</button>
+			<button (click)="navegarMostrar()" type="button" class="btn btn-primary">Mostrar</button>
+			<button (click)="navegarBuscar()" type="button" class="btn btn-primary">Buscar</button>
+			<button (click)="navegarPerfil()" type="button" class="btn btn-primary">  <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16"><path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/></svg>
+                [{{nombreUsuario}}]</button>
+		</div>
+	</div>
+
+    <main>
+
+		<br><br>
+		<div class="comentarios">
+			<h3>Publicacion</h3>
+		</div>
+
+		<div class="publicacion">
+			<div class="card">
+				<h5 class="card-header">Catedrático: {{catedratico}}</h5>
+				<h6 class="card-header text-muted">Curso: {{curso}}</h6>
+				<h6 class="card-header text-muted">Creador del post: {{creador}}</h6>
+				<h6 class="card-header text-muted">Fecha de creacion del post: {{fechaFormateada }}</h6>
+				<div class="card-body">
+
+				  <p class="card-text">{{com}}</p>
+				  <button (click)="buscarSubcomentarios()"class="btn btn-primary">Actualizar</button>
+				</div>
+			</div>
+
+			<div *ngIf ="m==true" class="comentarios">
+				<h3>Comentarios</h3>
+			</div>
+
+			<div *ngFor ="let item of comentariosFinales" >
+				
+
+				<div class="card">
+					<div class="card-header">
+					Sub-comentario
+					</div>
+					<div class="card-body">
+					<blockquote class="blockquote mb-0">
+						<p>{{item.Nombre_Usuario}}</p>
+						<footer class="blockquote-footer"> <cite title="Source Title">{{item.Comentario}}</cite></footer>
+					</blockquote>
+					</div>
+				</div>
+			</div>
+
+
+
+			<br><br>
+			<div class="comentarios">
+				  <h3>Crear Comentario</h3>
+			</div>
+
+
+
+			<form [formGroup]="formulario" action="/login" method="post" (submit)="crearSubcomentario()">
+				<ul>
+					<li>
+						<div class="mb-3">
+							<textarea formControlName="comentarioSegundario" class="form-control form-control-lg"	 id="exampleFormControlTextarea1" rows="3"></textarea>
+						</div>
+					</li>
+
+				</ul>
+
+				<div class="container">
+					<button type="submit"> Comentar </button>
+				</div>
+
+			</form>
+
+		</div>
+
+    </main>   
+
+    <footer>
+        <br><br><br><br><br>
+		<p>© 2023 - Nombre de usuario</p>
+	</footer>
+
+
+</body>
+</html>
+

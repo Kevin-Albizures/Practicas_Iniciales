@@ -29,13 +29,13 @@ export class HomeComponent implements OnInit {
 
   infoLogin(){
     this.servicio.Login ({
-      Registro: parseInt(this.formulario.get("registro_academico")?.value),
+      Registro: this.formulario.get("registro_academico")?.value,
       Pass: this.formulario.get("pass")?.value
   
     }).subscribe(respuesta => {
       console.log(respuesta);
       
-      if(!this.servicio.ingresarAplicativo(respuesta)){
+      if(respuesta.Estado == false){
         alert("No se encuentra usuario con esos datos");
         console.log(this.servicio.ingresarAplicativo(respuesta))
       } else{

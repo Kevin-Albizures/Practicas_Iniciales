@@ -7,16 +7,14 @@
 </head>
 
 <body>
-<<<<<<< HEAD
     <br><br>
-=======
 
     
->>>>>>> 47c11acbf6c4aad4514e7ba203a4feb17fd64fc8
-    <form [formGroup]="formulario" action="/login" method="post" (submit)="infoLogin()">
+    <form [formGroup]="formulario" method="post" (submit)="infoLogin()" autocomplete="off">
         <div class="container2">
-            <img src="https://plataformacii.ingenieria.usac.edu.gt/images/logo_fi.png" width="80%" > 
+            <img src="https://plataformacii.ingenieria.usac.edu.gt/images/logo_fi.png" width="70%" > 
         </div>
+        <br>
         <div class="container">
             <label for="username"><b>Usuario</b></label>
             <input  formControlName="registro_academico" type="text" placeholder="Ingrese Nombre" name="username"  id="username"required>
@@ -27,9 +25,8 @@
             <button  type="submit"  id="ingresar">Ingresar</button>
   
 
-            <label>
-                <input type="checkbox" checked="checked" name="remember"> Recordar Contraseña
-            </label>
+                <br><br>
+
         </div>
 
         <div class="container clearfix">

@@ -12,7 +12,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 //configuraciones
-app.set('port',4253);
+app.set('port',4257);
 
 
 // usando morgan para middlewares
@@ -340,7 +340,7 @@ connection.query(sql_selection, (err, result, fields)=>{
         if(existe==false){
             res.send({Mensaje:"No se encuentra usuario con esos datos", Estado: false});
         }else{
-            res.send({Lista: comentarios_seleccionado});
+            res.send({Lista: comentarios_seleccionado, Estado:true});
         }
         
         }); 
@@ -350,7 +350,101 @@ connection.query(sql_selection, (err, result, fields)=>{
 });
 
 
+//BUSCAR COMENTARIO UNICO
+connection.query(sql_selection, (err, result, fields)=>{
+    if(err){
+        console.log(`Hubo un error ${err}`);
+        return;
+    }
 
+    app.post('/buscarComentarioUnico',(req,res)=>{
+        const sql_selection2 = `SELECT * FROM estudiantes_bd.comentarios;`;
+        connection.query(sql_selection2, (err, result, fields)=>{
+        
+
+        let comentarios= result;
+        let existe = false
+    
+        for (let i = 0; i < comentarios.length; i++) {
+
+            if (comentarios[i].Id == req.body.Id_CometarioUnico){
+                existe= true 
+                
+                res.send({Mensaje:"Bienvenido", ComentarioP: comentarios[i], Estado: true});
+            }        
+        }
+        
+        if(existe==false){
+            res.send({Mensaje:"No se encuentra usuario con esos datos", Estado: false});
+        }
+        
+        }); 
+    });
+
+    
+});
+
+
+//CREAR SUBCOMENTARIOPS
+app.post('/crearSubcomentarios',bodyParser.json(),(req,res)=>{
+    console.log(req.body);
+
+    var dato1 = req.body.Comentario;
+    var dato2 = req.body.Id_ComentarioPri;
+    var dato3 = req.body.Nombre_Usuario;
+    console.log(dato1);
+
+    let sql_insert = `INSERT INTO sub_comentarios(Comentario, Id_ComentarioPri, Nombre_Usuario) VALUES('${dato1}', ${dato2}, '${dato3}');`;
+
+    connection.query(sql_insert, (error, results, fields) => {
+        if (error) {
+            res.send(JSON.stringify({Mensaje:"Error al insertar datos en la base de datos", Error: error.stack }));
+            return;
+        }
+        
+        res.send(JSON.stringify({Mensaje:"Comentario creado con exito", Estado: true}));
+        console.log(results);
+    });
+
+    
+})
+
+
+//BUSCAR SUBCOMENTARIOS
+connection.query(sql_selection, (err, result, fields)=>{
+    if(err){
+        console.log(`Hubo un error ${err}`);
+        return;
+    }
+
+    app.post('/buscarSubcomentario',(req,res)=>{
+        const sql_selection2 = `SELECT * FROM estudiantes_bd.sub_comentarios;`;
+        connection.query(sql_selection2, (err, result, fields)=>{
+        
+
+        let comentarios= result;
+        let existe = false
+        let subcomentarios_seleccionado = []
+    
+        for (let i = 0; i < comentarios.length; i++) {
+
+            if (comentarios[i].Id_ComentarioPri == req.body.Dato){
+                existe= true 
+                subcomentarios_seleccionado.push(comentarios[i])
+            }        
+        }
+        
+        if(existe==false){
+            res.send({Mensaje:"No se encuentra usuario con esos datos", Estado: false});
+        }else{
+            res.send({Lista: subcomentarios_seleccionado, Estado:true});
+        }
+        
+        }); 
+    });
+
+    
+});
 
 app.listen(app.get('port'),()=>{
     console.log('Servidor iniciado en el puerto: '+app.get('port'));

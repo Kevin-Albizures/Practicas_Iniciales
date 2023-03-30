@@ -53,22 +53,52 @@ export class MostrarComponent implements OnInit  {
 
 
   buscar(dato : number){
+    if(dato ==this.idUsuario){
+
+      this.router.navigate(['/perfil']);
+
+    }else {
+
+      this.servicioCliente.BuscarUsuario ({
+        Registro: dato
     
-    this.servicioCliente.BuscarUsuario ({
-      Registro: dato
+      }).subscribe(respuesta => {
+        console.log(respuesta);
   
-    }).subscribe(respuesta => {
-      console.log(respuesta);
-      
-      if(!this.servicioCliente.ingresarAplicativo(respuesta)){
-        alert("No se encuentra usuario con esos datos");
-      } else{
-        this.router.navigate(['/perfil_sec']);
-        this.servicioCliente.encapsular2(respuesta.Usuario);
-      }
+  
+        if(respuesta.Estado == false){
+          alert("No se encuentra usuario con esos datos");
+          console.log(this.servicioCliente.ingresarAplicativo(respuesta))
+        } else{
+          this.router.navigate(['/perfil_sec']);
+          this.servicioCliente.encapsular2(respuesta.Usuario);
+        }
+        
+  
+      });
 
-    });
-
+    }
   }  
+
+
+  buscar2(dato : number){
+  this.servicioCliente.BuscarComentarioUnico ({
+    Id_CometarioUnico: dato
+
+  }).subscribe(respuesta => {
+    console.log(respuesta);
+
+
+    if(respuesta.Estado == false){
+      alert("No se encuentra usuario con esos datos");
+      console.log(this.servicioCliente.ingresarAplicativo(respuesta))
+    } else{
+      this.router.navigate(['/foro']);
+      this.servicioCliente.encapsular3(respuesta.ComentarioP);
+    }
+    
+
+  });
+  }
 
 }

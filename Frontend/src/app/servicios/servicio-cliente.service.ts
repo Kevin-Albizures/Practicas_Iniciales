@@ -16,9 +16,10 @@ export class ServicioClienteService {
   private ingresar:boolean = false;
   private usuario:any = {};
   private usuario2:any = {};
+  private comentario:any = {};
 
 
-  servidor="http://localhost:4253"
+  servidor="http://localhost:4257"
 
 
   constructor(private servicio:HttpClient) { }
@@ -80,6 +81,22 @@ export class ServicioClienteService {
 
   }
 
+  BuscarComentarioUnico(datos:any): Observable <any>{
+    return this.servicio.post(`${this.servidor}/buscarComentarioUnico`, JSON.stringify(datos) , httpOptions);
+
+  }
+
+  CrearSubcomentarios(datos:any): Observable <any>{
+    return this.servicio.post(`${this.servidor}/crearSubcomentarios`, JSON.stringify(datos) , httpOptions);
+
+  }
+
+  BuscarSubcomentarios(datos:any): Observable <any>{
+    return this.servicio.post(`${this.servidor}/buscarSubcomentario`, JSON.stringify(datos) , httpOptions);
+
+  }
+
+
 
 
 
@@ -109,5 +126,14 @@ export class ServicioClienteService {
   devolver2(){
     return this.usuario2;
   }
+
+  encapsular3(comentario:any){
+    return this.comentario = comentario;
+  }
+
+  devolver3(){
+    return this.comentario;
+  }
+
 
 }

@@ -9,6 +9,7 @@ import { PerfilComponent } from './paginas/perfil/perfil.component';
 import { CambioPassComponent } from './paginas/cambio-pass/cambio-pass.component';
 import { PerfilSecComponent } from './paginas/perfil-sec/perfil-sec.component';
 import { BusquedaComponent } from './paginas/busqueda/busqueda.component';
+import { ForoComponent } from './paginas/foro/foro.component';
 
 const routes: Routes = [
   {path:"", redirectTo: "home", pathMatch: "full"},
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path:"perfil", component:PerfilComponent},
   {path:"cambio_pass", component:CambioPassComponent },
   {path:"perfil_sec", component:PerfilSecComponent  },
-  {path:"busqueda", component:BusquedaComponent}
+  {path:"busqueda", component:BusquedaComponent},
+  {path:"foro", component:ForoComponent}
 
 ];
 

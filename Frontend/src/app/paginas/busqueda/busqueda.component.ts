@@ -14,6 +14,7 @@ export class BusquedaComponent implements OnInit {
   
   objeto = this.servicios.devolver();
   nombreUsuario = this.objeto.Nombre;
+  idUsuario = this.objeto.Registro_A;
 
   comentariosFinales:Array<any>=[];
   comentariosSeleccionados:Array<any>=[];
@@ -39,17 +40,24 @@ export class BusquedaComponent implements OnInit {
       console.log(respuesta);
       this.comentariosSeleccionados= [];
 
-      for (let i=0; i<respuesta.Lista.length; i++){
+      if(respuesta.Estado == true){
+        for (let i=0; i<respuesta.Lista.length; i++){
 
-        let fechaISO = respuesta.Lista[i].Fecha;
-        let fecha = new Date(fechaISO);
-        let fechaFormateada = fecha.toLocaleString('es-ES', {day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit'});
-        respuesta.Lista[i].Fecha=fechaFormateada;
-        this.comentariosSeleccionados.push(respuesta.Lista[i]);
-     
+          let fechaISO = respuesta.Lista[i].Fecha;
+          let fecha = new Date(fechaISO);
+          let fechaFormateada = fecha.toLocaleString('es-ES', {day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit'});
+          respuesta.Lista[i].Fecha=fechaFormateada;
+          this.comentariosSeleccionados.push(respuesta.Lista[i]);
+       
+        }
+  
+        this.comentariosFinales = this.comentariosSeleccionados
+
+      }else{
+        this.comentariosFinales= [];
+        alert("No se encuentra datos con es valor");
       }
 
-      this.comentariosFinales = this.comentariosSeleccionados
 
 
     });
@@ -79,5 +87,33 @@ export class BusquedaComponent implements OnInit {
     console.log("holas"+ this.act)
 
   }
+
+  buscar(dato : number){
+    if(dato ==this.idUsuario){
+
+      this.router.navigate(['/perfil']);
+
+    }else {
+
+      this.servicios.BuscarUsuario ({
+        Registro: dato
+    
+      }).subscribe(respuesta => {
+        console.log(respuesta);
+  
+  
+        if(respuesta.Estado == false){
+          alert("No se encuentra usuario con esos datos");
+          console.log(this.servicios.ingresarAplicativo(respuesta))
+        } else{
+          this.router.navigate(['/perfil_sec']);
+          this.servicios.encapsular2(respuesta.Usuario);
+        }
+        
+  
+      });
+
+    }
+  }  
 
 }
