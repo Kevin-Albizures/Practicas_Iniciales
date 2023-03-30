@@ -76,7 +76,7 @@ export class PerfilComponent implements OnInit {
   }
 
   navegarBuscar(){
-    this.router.navigate(['/registro']);
+    this.router.navigate(['/busqueda']);
   }
 
   navegarPerfil(){

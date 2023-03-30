@@ -45,7 +45,7 @@ export class PerfilSecComponent implements OnInit {
   }
 
   navegarBuscar(){
-    this.router.navigate(['/registro']);
+    this.router.navigate(['/busqueda']);
   }
 
   navegarPerfil(){

@@ -12,7 +12,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 //configuraciones
-app.set('port',4245);
+app.set('port',4253);
 
 
 // usando morgan para middlewares
@@ -311,6 +311,45 @@ connection.query(sql_selection, (err, result, fields)=>{
 
     
 });
+
+
+//BUSCAR COMENTARIO
+connection.query(sql_selection, (err, result, fields)=>{
+    if(err){
+        console.log(`Hubo un error ${err}`);
+        return;
+    }
+
+    app.post('/buscarComentario',(req,res)=>{
+        const sql_selection2 = `SELECT * FROM estudiantes_bd.comentarios;`;
+        connection.query(sql_selection2, (err, result, fields)=>{
+        
+
+        let comentarios= result;
+        let existe = false
+        let comentarios_seleccionado = []
+    
+        for (let i = 0; i < comentarios.length; i++) {
+
+            if (comentarios[i].Curso == req.body.Dato || comentarios[i].Catedratico == req.body.Dato ){
+                existe= true 
+                comentarios_seleccionado.push(comentarios[i])
+            }        
+        }
+        
+        if(existe==false){
+            res.send({Mensaje:"No se encuentra usuario con esos datos", Estado: false});
+        }else{
+            res.send({Lista: comentarios_seleccionado});
+        }
+        
+        }); 
+    });
+
+    
+});
+
+
 
 
 app.listen(app.get('port'),()=>{

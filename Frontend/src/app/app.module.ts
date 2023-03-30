@@ -13,6 +13,7 @@ import { PrincipalComponent } from './paginas/principal/principal.component';
 import { PerfilComponent } from './paginas/perfil/perfil.component';
 import { CambioPassComponent } from './paginas/cambio-pass/cambio-pass.component';
 import { PerfilSecComponent } from './paginas/perfil-sec/perfil-sec.component';
+import { BusquedaComponent } from './paginas/busqueda/busqueda.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { PerfilSecComponent } from './paginas/perfil-sec/perfil-sec.component';
     PrincipalComponent,
     PerfilComponent,
     CambioPassComponent,
-    PerfilSecComponent
+    PerfilSecComponent,
+    BusquedaComponent
   ],
   imports: [
     BrowserModule,

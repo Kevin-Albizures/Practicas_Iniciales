@@ -79,7 +79,7 @@ export class PrincipalComponent implements OnInit {
   }
 
   navegarBuscar(){
-    this.router.navigate(['/registro']);
+    this.router.navigate(['/busqueda']);
   }
 
   navegarPerfil(){

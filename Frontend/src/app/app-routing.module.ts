@@ -8,6 +8,7 @@ import {PrincipalComponent} from "./paginas/principal/principal.component"
 import { PerfilComponent } from './paginas/perfil/perfil.component';
 import { CambioPassComponent } from './paginas/cambio-pass/cambio-pass.component';
 import { PerfilSecComponent } from './paginas/perfil-sec/perfil-sec.component';
+import { BusquedaComponent } from './paginas/busqueda/busqueda.component';
 
 const routes: Routes = [
   {path:"", redirectTo: "home", pathMatch: "full"},
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path:"principal", component:PrincipalComponent},
   {path:"perfil", component:PerfilComponent},
   {path:"cambio_pass", component:CambioPassComponent },
-  {path:"perfil_sec", component:PerfilSecComponent  }
+  {path:"perfil_sec", component:PerfilSecComponent  },
+  {path:"busqueda", component:BusquedaComponent}
 
 ];
 

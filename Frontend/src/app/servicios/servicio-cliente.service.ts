@@ -18,7 +18,7 @@ export class ServicioClienteService {
   private usuario2:any = {};
 
 
-  servidor="http://localhost:4245"
+  servidor="http://localhost:4253"
 
 
   constructor(private servicio:HttpClient) { }
@@ -74,6 +74,12 @@ export class ServicioClienteService {
     return this.servicio.post(`${this.servidor}/buscarUsuario`, JSON.stringify(datos) , httpOptions);
 
   }
+
+  BuscarComentario(datos:any): Observable <any>{
+    return this.servicio.post(`${this.servidor}/buscarComentario`, JSON.stringify(datos) , httpOptions);
+
+  }
+
 
 
 
