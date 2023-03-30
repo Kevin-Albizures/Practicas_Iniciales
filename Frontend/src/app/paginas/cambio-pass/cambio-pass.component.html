@@ -1,0 +1,50 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Registrarse</title>
+    
+</head>
+<body>
+    <form [formGroup]="formulario" (submit)="modificarPass()">
+        <div class="container2">
+            <img src="https://plataformacii.ingenieria.usac.edu.gt/images/logo_fi.png" width="50%" > 
+        </div>
+        
+        <div class="container2">
+            <label class="labe2" for="registro_academico">REGISTRO DE USUARIOS</label>
+        </div>
+
+
+        <ul>
+            <li>
+                <label class="Label" for="registro_academico">Registro Académico:</label>
+                <div class="container">
+                    <input formControlName="registro_academico" type="text" id="registro_academico"  placeholder="Ingrese Registro Académico"><br>
+                </div>
+            </li>
+
+            <li>
+                <label class="Label" for="correo">Correo electrónico:</label>
+                <div class="container">
+                    <input formControlName="correo" type="text" id="correo" placeholder="Ingrese Correo" name="correo"><br>
+                </div>
+            </li>
+
+            <li>
+                <label class="Label" for="contrasena">Contraseña Nueva:</label>
+                <div class="container">
+                    <input formControlName="pass" type="password" id="contrasena" placeholder="Ingrese Contraseña"><br>
+                </div>
+            </li>
+        
+
+        </ul>
+        
+    
+        <div class="container">
+            <button type="submit"> Actualizar Contraseña </button>
+            
+        </div>
+        
+    </form>
+      
+</body>

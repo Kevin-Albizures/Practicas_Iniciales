@@ -1,0 +1,145 @@
+.card {
+    margin: 3%;
+    justify-content: center;
+    
+}
+
+
+::-webkit-scrollbar-thumb {
+    background-color: #909090;
+    border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar {
+    background-color: #F5F5F5;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+    background-color: #616060;
+    }
+    
+
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+    }
+
+    form {
+        background-color: #f2f2f2;
+        border: 0px solid #dddddd;
+        padding-left: 10%;
+        padding-right: 10%;
+        padding-bottom: 5%;
+        max-width: 80%;
+        margin: 0% auto;
+    }
+
+    input {
+        width: 100%;
+        padding: 1.2% 2%;
+        margin: 20px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    button[type=submit] {
+        background-color: #4CAF50;
+        color: #ffffff;
+        padding: 1.2% 2%;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        float: right;
+    }
+
+    button[type=submit]:hover {
+        background-color: #45a049;
+    }
+
+    .titulo{
+        color: #ffffff;
+        font-family:  sans-serif;
+        justify-content: left;
+    }
+
+    .titulo2{
+
+        justify-content: left;
+        padding-left: 2%;
+        font-family:  sans-serif;
+    }
+
+    .titulo3{
+        display: flex;
+        justify-content: center;
+        font-family:  sans-serif;
+    }
+
+    .creditos{
+        justify-content: right;
+        padding-left: 80%;
+        font-family:  sans-serif;
+        color:#45a049;
+    }
+
+
+    
+    .sw{
+        font-family:  sans-serif;
+        float: right;
+        padding-right: 15%;
+    }
+
+    .form-check-input{
+        margin: 1px -20px;
+        
+    }
+
+    .container {
+        padding: 1.6%;
+    }
+    
+    .container2 {
+
+        font-family: sans-serif;
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .btn-group {
+        display: flex;
+        justify-content: center;
+
+    }
+
+    header {
+
+        background-color: #020E17;
+        padding: 2%;
+        display: flex;
+        justify-content: center;
+        
+
+    }
+
+
+
+    span.psw {
+        float: right;
+        padding-top: 1.6%;
+    }
+
+    span.psw2 {
+        float: left;
+        padding-top: 1.6%;
+    }
+
+    .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+    }

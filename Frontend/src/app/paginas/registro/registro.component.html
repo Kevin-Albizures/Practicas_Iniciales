@@ -1,0 +1,63 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Registrarse</title>
+    
+</head>
+<body>
+    <form [formGroup]="formulario" (submit)="crearCliente()">
+        <div class="container2">
+            <img src="https://plataformacii.ingenieria.usac.edu.gt/images/logo_fi.png" width="50%" > 
+        </div>
+        
+        <div class="container2">
+            <label class="labe2" for="registro_academico">REGISTRO DE USUARIOS</label>
+        </div>
+
+
+        <ul>
+            <li>
+                <label class="Label" for="registro_academico">Registro Académico:</label>
+                <div class="container">
+                    <input formControlName="registro_academico" type="text" id="registro_academico"  placeholder="Ingrese Registro Académico"><br>
+                </div>
+            </li>
+            
+            <li>
+                <label class="Label" for="nombres">Nombres:</label>
+                <div class="container">
+                    <input formControlName="nombre" type="text" id="nombres"  placeholder="Ingrese Nombre(s)"><br>
+                </div>
+            </li>
+            
+            <li>
+                <label class="Label" for="apellidos">Apellidos:</label>
+                <div class="container">
+                    <input formControlName="apellidos" type="text" id="apellidos" placeholder="Ingrese Apellidos"><br>
+                </div>
+            </li>
+            
+            <li>
+                <label class="Label" for="contrasena">Contraseña:</label>
+                <div class="container">
+                    <input formControlName="pass" type="password" id="contrasena" placeholder="Ingrese Contraseña"><br>
+                </div>
+            </li>
+            
+            <li>
+                <label class="Label" for="correo">Correo electrónico:</label>
+                <div class="container">
+                    <input formControlName="correo" type="email" id="correo" placeholder="Ingrese Correo" name="correo"><br>
+                </div>
+            </li>
+
+        </ul>
+        
+    
+        <div class="container">
+            <button type="submit"> Registrarse </button>
+            
+        </div>
+        
+    </form>
+      
+</body>

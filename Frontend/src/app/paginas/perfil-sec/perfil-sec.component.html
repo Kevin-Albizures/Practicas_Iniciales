@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Página de mostrar</title>
+</head>
+
+<body>
+    <header>
+		<div class="container2">
+			<img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Usac_logo.png" width="20%" > 
+		</div>	
+	</header>
+
+	<div class="container3">
+		<div class="btn-group" role="group" aria-label="Toolbar with button groups">
+			<button (click)="navegarPrincipal()" type="button" class="btn btn-primary">Principal</button>
+			<button (click)="navegarMostrar()" type="button" class="btn btn-primary">Mostrar</button>
+			<button (click)="alv()" type="button" class="btn btn-primary">Buscar</button>
+			<button (click)="navegarPerfil()" type="button" class="btn btn-primary">  <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16"><path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/></svg>
+                [{{nombreUsuario}}]</button>
+		</div>
+	</div>
+
+    <main>
+
+			<h2 class="titulo2">Cursos Aprobados </h2>
+      <h4 class="creditos">Total de Creditos: {{idUsuarioS}} </h4>
+			<br>
+
+      <div class="row row-cols-1 row-cols-md-4 g-4">
+          <div *ngFor ="let item of datosCurso" class="col">
+              <div class="card text-white bg-dark mb-3" style="max-width: 21rem;">
+                  <div class="card-header">Curso {{item.index}}</div>
+                  <div class="card-body">
+                    <h5 class="card-title">{{item.Curso}}</h5>
+                    <p class="card-text">Creditos: {{item.Creditos}}</p>
+                  </div>
+                </div>
+          </div>
+      </div>
+
+    </main>   
+
+    <footer>
+		<p>© 2023 - Nombre de usuario</p>
+	</footer>
+
+
+</body>
+</html>
+
+
+

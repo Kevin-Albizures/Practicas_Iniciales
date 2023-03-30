@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Nombre de usuario - Página de inicio</title>
+</head>
+<body>
+	
+
+	<header>
+		<div class="container2">
+			<img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Usac_logo.png" width="20%" > 
+		</div>	
+	</header>
+
+	<div class="container3">
+		<div class="btn-group" role="group" aria-label="Toolbar with button groups">
+			<button (click)="navegarHome()" type="button" class="btn btn-primary">Home</button>
+			<button (click)="navegarMostrar()" type="button" class="btn btn-primary">Mostrar</button>
+			<button type="button" class="btn btn-primary">Buscar</button>
+			<button (click)="navegarPerfil()" type="button" class="btn btn-primary">  <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16"><path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/></svg>
+			[{{nombreUsuario}}]</button>
+		</div>
+	</div>
+	
+
+	<main>
+		
+
+		<section>
+			<br><br>
+			<h2 class="titulo2">Crear Publicacion</h2>
+			<br>
+			<form [formGroup]="formulario" action="/login" method="post" (submit)="crearComentario()">
+				
+				<ul>
+					<li>
+						<div class="mb-3">
+							<label for="exampleFormControlInput1" class="form-label">Curso</label>
+							<input formControlName="curso" type="text" class="form-control" id="exampleFormControlInput1">
+						</div>
+					</li>
+
+					<li>
+						<div class="mb-3">
+							<label for="exampleFormControlInput1" class="form-label">Catedrático</label>
+							<input formControlName="catedratico" type="text" class="form-control" id="exampleFormControlInput1" >
+						</div>
+					</li>
+
+					<li>
+						<div class="mb-3">
+							<label for="exampleFormControlTextarea1" class="form-label">Comentario</label>
+							<textarea formControlName="comentario" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+						</div>
+					</li>
+
+				</ul>
+
+				<div class="container">
+					<button type="submit"> Agregar Post </button>
+				</div>
+
+			</form>
+
+			
+		</section>
+
+
+
+
+		<section>
+			<br><br>
+			<h2 class="titulo2">Crear Curso</h2>
+			<br>
+			<form [formGroup]="formularioC" action="/login" method="post" (submit)="crearCurso()">
+				
+				<ul>
+					<li>
+						<div class="mb-3">
+							<label for="exampleFormControlInput1" class="form-label">Curso</label>
+							<input formControlName="cursoA" type="text" class="form-control" id="exampleFormControlInput1">
+						</div>
+					</li>
+
+					<li>
+						<div class="mb-3">
+							<label for="exampleFormControlInput1" class="form-label">Id de Curso</label>
+							<input formControlName="id_cursoA" type="text" class="form-control" id="exampleFormControlInput1" >
+						</div>
+					</li>
+
+					<li>
+						<div class="mb-3">
+							<label for="exampleFormControlInput1" class="form-label">Creditos</label>
+							<input formControlName="creditos" type="text" class="form-control" id="exampleFormControlInput1" >
+						</div>
+					</li>
+
+				</ul>
+
+				<div class="container">
+					<button type="submit"> Agregar Curso </button>
+				</div>
+
+			</form>
+
+			
+		</section>
+	</main>
+
+	<footer>
+		<p>© 2023 - Nombre de usuario</p>
+	</footer>
+</body>
+</html>
+
+
+
